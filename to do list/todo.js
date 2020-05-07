@@ -1,10 +1,14 @@
-//ADD new To do 
-const addForm = document.querySelector('.add');
-const list = document.querySelector('.todos');
-const popup = document.querySelector('.popup');
-const gPop = document.querySelector('.popup-wrapper');
-const btn = document.querySelector('.btn');
-const search = document.querySelector('.search input');
+//ADD new To do
+const search = document.querySelector('.search input');//18
+
+const list = document.querySelector('.todos');  //23
+
+const addForm = document.querySelector('.add'); //43
+const btn = document.querySelector('.btn');     //47
+
+const gPop = document.querySelector('.popup-wrapper');//58
+const popup = document.querySelector('.popup'); //59
+
 gPop.style.display = "none";
 
 
@@ -61,7 +65,12 @@ const generateTemp = todo =>{
             </li>
    `;  
    list.innerHTML += html;
+   localStorage[''] = list.innerHTML
 };
+
+if(localStorage['']){
+   list.innerHTML = localStorage[''];
+}
 
 
 /* function pour controller l'evenement et pour ne pas etre repeté à chaque clique */
@@ -95,20 +104,21 @@ onetime(gPop,'click',handler);
 //Eventlistner Add TODOS
 btn.addEventListener('click',e =>{
    e.preventDefault();
-   
-   let number=3;
-   if (document.querySelector('.popup-content') == null) {
+   const add = addForm.add.value;
+   const number = 3;
+   if(document.querySelector('.popup-content') == null){
       create();
    }
-   if (addForm.add.value == "") {
+   if (add == ''){
       start(number);
-      popup.style.visibility = "visible";
-   } else {
-       addf = generateTemp(addForm.add.value);
-      localStorage.getItem(addForm.add.value);
+      popup.style.visibility = 'visible'
+      
    }
- 
-  
+   else{
+   generateTemp(add);
+   }
+
+   
 });
 
 /************* Fin Adding TO DO**************/
@@ -117,13 +127,13 @@ btn.addEventListener('click',e =>{
 
 /*************Deleting  TO DO**************/
 list.addEventListener('click',e =>{
- if(e.target.tagName === 'I'){
-    e.target.parentElement.remove();
-    
- }
- 
-});
 
+   if(e.target.tagName === 'I'){
+      e.target.parentElement.remove();
+      localStorage[''] = list.innerHTML
+   }
+
+});
 
 /************* Fin Deleting  TO DO**************/
 
@@ -145,22 +155,26 @@ const retrieve = (term) =>{
    var filter, li, a, i, txtValue;
    filter = search.value.toUpperCase();
    li = list.getElementsByTagName("li");
+   
    for (i = 0; i < li.length; i++) {
       a = li[i].getElementsByTagName("span")[0];
+      console.log(a);
       txtValue = a.textContent || a.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
          li[i].style.display = "";
       } else {
          li[i].style.setProperty('display', 'none', 'important');
-
+         
       }
    }
+
 };  
 
 
 //evenement de recherche des mots clés 
 search.addEventListener('keyup', () =>{
-   retrieve();
+
+ retrieve();
   
 
 })
@@ -168,3 +182,4 @@ search.addEventListener('keyup', () =>{
 /*************************************Fin SEARCH ITEM********************************************/
 
 
+//if(i.classList.contains('delete')){li.remove;}
