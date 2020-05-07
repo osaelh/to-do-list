@@ -1,13 +1,13 @@
 //ADD new To do
-const search = document.querySelector('.search input');//18
+const search = document.querySelector('.search input');
 
-const list = document.querySelector('.todos');  //23
+const list = document.querySelector('.todos');  
 
-const addForm = document.querySelector('.add'); //43
-const btn = document.querySelector('.btn');     //47
+const addForm = document.querySelector('.add'); 
+const btn = document.querySelector('.btn');     
 
-const gPop = document.querySelector('.popup-wrapper');//58
-const popup = document.querySelector('.popup'); //59
+const gPop = document.querySelector('.popup-wrapper');
+const popup = document.querySelector('.popup'); 
 
 gPop.style.display = "none";
 
@@ -180,6 +180,3 @@ search.addEventListener('keyup', () =>{
 })
 
 /*************************************Fin SEARCH ITEM********************************************/
-
-
-//if(i.classList.contains('delete')){li.remove;}
